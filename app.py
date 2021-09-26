@@ -11,7 +11,7 @@ def home():
 
 @app.route('/login')
 def login():
-    return ("This is where you will login...")
+    return (render_template("login.html"))
 
 @app.route('/create_account')
 def create_account():
