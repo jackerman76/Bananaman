@@ -7,15 +7,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return ("Welcome to the home page!")
+    return (render_template("home.html"))
 
 @app.route('/login')
 def login():
+    # this is where we will request form stuff
+    if request.method == 'GET':
+        #return render_template("home.html")
     return (render_template("login.html"))
 
 @app.route('/create_account')
 def create_account():
-    return ("This is where you will create an account...")
+    return (render_template("create_account.html"))
 
 @app.route('/got_bananas')
 def got_bananas():
