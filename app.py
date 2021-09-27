@@ -9,22 +9,33 @@ app = Flask(__name__)
 def home():
     return (render_template("home.html"))
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
-    # this is where we will request form stuff
-    if request.method == 'GET':
-        #return render_template("home.html")
+    if request.form.get("create_account") == "True":
+        return (render_template("create_account.html"))
+    if request.form.get("login") == "True":
+        username = request.values.get('username')
+        password = request.values.get('password')
+        return (render_template("home.html"))
+    #return render_template("home.html")
     return (render_template("login.html"))
 
-@app.route('/create_account')
+@app.route('/create_account', methods=["GET", "POST"])
 def create_account():
+    if request.method == 'POST':
+        if request.form.get("create_account") == "True":
+            password1 = request.values.get('password')
+            password2 = request.values.get('password2')
+            if password1 == password2:
+                # do stuff
+                return (render_template("login.html"))
     return (render_template("create_account.html"))
 
-@app.route('/got_bananas')
+@app.route('/got_bananas', methods=["GET", "POST"])
 def got_bananas():
     return ("Tell us more about your bananas...")
 
-@app.route('/need_bananas')
+@app.route('/need_bananas', methods=["GET", "POST"])
 def need_bananas():
     return ("When you need bananas, this is where you will come...")
 
