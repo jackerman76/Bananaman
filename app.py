@@ -28,7 +28,7 @@ def create_account():
             password2 = request.values.get('password2')
             if password1 == password2:
                 # do stuff
-                return (render_template("login.html"))
+                return (redirect("login"))
     return (render_template("create_account.html"))
 
 @app.route('/got_bananas', methods=["GET", "POST"])
