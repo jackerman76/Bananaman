@@ -5,8 +5,16 @@ from flask import Flask, request, redirect, render_template, url_for, jsonify, s
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def home():
+    if request.form.get("signup") == "True":
+        return (render_template("create_account.html"))
+    if request.form.get("login") == "True":
+        return (render_template("login.html"))
+    if request.form.get("got_bananas") == "True":
+        return (render_template("got_bananas.html"))
+    if request.form.get("need_bananas") == "True":
+        return (render_template("need_bananas.html"))
     return (render_template("home.html"))
 
 @app.route('/login', methods=["GET", "POST"])
