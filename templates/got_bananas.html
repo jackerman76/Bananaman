@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<title> Got Bananas? </title>
-  </head>
-  <body>
+{% extends '_base.html' %}
+{% block header %}
+{% endblock %}
+{% block content %}
+<div class="container">
   	<header>
   		<h1> Got Bananas? </h1>
   		<br>
   	</header>
+</div>
+
+<div class="container">
   	<p> This page will allow users to indicate that they have bananas that others will then be able to pick up based on proximity, quantity, etc. Users will be able to upload a photo of their available bananas so that anyone interested can gauge their quality, confirm the amount of bananas, and check for ripeness. For every banana exchanged, the banana giver will earn one point on their profile. The user with the most points is crowned as the reigning bananaman and can have their profile picture displayed on the home page.
   	</p>
-</html>
+</div>
+{% endblock %}

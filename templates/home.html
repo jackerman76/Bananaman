@@ -1,23 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Home</title>
-  </head>
-  <body>
+{% extends '_base.html' %}
+{% block header %}
+{% endblock %}
+{% block content %}
+  <div class="container">
       <header>
           <h1>Welcome to Bananaman!</h1>
           <br>
       </header>
-
+  </div>
+  <div class="container">
       <form>
-        <button type="submit" value="True" name="signup" formmethod="POST" > Sign Up </button>
-        <button type="submit" value="True" name="login" formmethod="POST" > Log In </button>
-        <button type="submit" value="True" name="got_bananas" formmethod="POST" > Got Bananas? </button>
-        <button type="submit" value="True" name="need_bananas" formmethod="POST" > Need Bananas? </button>
+        <button type="submit" value="True" name="signup" formmethod="POST" class="btn btn-primary"> Sign Up </button>
+        <button type="submit" value="True" name="login" formmethod="POST" class="btn btn-primary"> Log In </button>
+        <button type="submit" value="True" name="got_bananas" formmethod="POST" class="btn btn-primary"> Got Bananas? </button>
+        <button type="submit" value="True" name="need_bananas" formmethod="POST" class="btn btn-primary"> Need Bananas? </button>
       </form>
-      
+
       <p>Here at Bananaman, we strive to get our users the <i>best</i> bananas they can find for making banana bread everyone will <b>love</b>. Every year, thousands of over-ripe bananas wind up in our landfills. To solve this everyday problem, we are giving users a way to connect with those in need. If you have ripe bananas, make a post describing your bananas! If you need ripened bananas for your grandma's banana bread recipe, contact someone on the site! We hope you enjoy your stay.</p>
-      
+
       <br>
       <div>
         <table>
@@ -29,8 +29,8 @@
                 <td><img src="/static/bananaMan.PNG" height="250" width="250"></td>
             </tr>
         </table>
-          
+
           <p>This user has given away over <i>4,534,962</i> bananas in the past 2 years! Way to go!</p>
-    </div>
-  </body>
-</html>
+      </div>
+  </div>
+{% endblock %}

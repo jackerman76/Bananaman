@@ -1,0 +1,33 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <title>{% block title %}{% endblock %}</title>
+
+    </head>
+    <body>
+        {#
+
+            Only show the error message area if we've specified one when rendering.
+
+        #}
+        {% if error_message %}<div><strong>{{error_message}}</strong></div>{% endif %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Banaman</a>
+        </nav>
+        <header>
+            {#
+
+                The header and content areas will be replaced in templates that extend
+                this one.
+
+            #}
+            {% block header %}{% endblock %}
+        </header>
+        <section>
+            {% block content %}{% endblock %}
+        </section>
+    </body>
+</html>

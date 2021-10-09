@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html>
-   <head>
-  	<title> Need Bananas? </title>
-  </head>
-  <body>
-  	<header>
-  		<h1> Need Bananas? </h1>
-  		<br>
-  	</header>
-  	<p> This page will allow users to search through Bananaman users that are currently offering up their bananas. Users will be able to filter through banana listings by indicating their location (by their device location or zipcode input), selecting a mile radius that they wish to search in, the number of bananas they wish to receive, and the desired ripeness level.
-  	</p>
-</html>
+{% extends '_base.html' %}
+{% block header %}
+{% endblock %}
+{% block content %}
+  <div class="container">
+     <head>
+    	<title> Need Bananas? </title>
+    </head>
+  </div>
+
+  <div class="container">
+    <body>
+    	<header>
+    		<h1> Need Bananas? </h1>
+    		<br>
+    	</header>
+    	<p> This page will allow users to search through Bananaman users that are currently offering up their bananas. Users will be able to filter through banana listings by indicating their location (by their device location or zipcode input), selecting a mile radius that they wish to search in, the number of bananas they wish to receive, and the desired ripeness level.
+    	</p>
+  </div>
+{% endblock %}

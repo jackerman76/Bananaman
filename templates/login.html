@@ -1,28 +1,38 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Login</title>
-  </head>
-  <body>
+{% extends '_base.html' %}
+{% block header %}
+{% endblock %}
+{% block content %}
+  <div class="container">
       <header>
           <h1>Login</h1>
           <br>
       </header>
+  </div>
+  <div class="container">
       <form>
         <section>
-          <div class="container">
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-            <br>
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-            <br>
-            <button type="submit" value="True" name="login" formmethod="POST">Login</button>
-            <br>
-            <button type="submit" value = "True" name="create_account" formmethod="POST">Create an Account</button>
-          </div>
+            <div class="form-group">
+              <label for="username"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="username" required>
+              <br>
+            </div>
+
+            <div class="form-group">
+              <label for="password"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password" required>
+              <br>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" value="True" name="login" formmethod="POST" class="btn btn-primary">Login</button>
+              <br>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" value = "True" name="create_account" formmethod="POST" class="btn btn-primary">Create an Account</button>
+            </div>
         </section>
       </form>
       <br>
-  </body>
-</html>
+  </div>
+{% endblock %}
