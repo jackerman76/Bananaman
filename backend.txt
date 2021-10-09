@@ -1,0 +1,32 @@
+*Brainstoriming Page for backend stuff*
+- stuff I need to ask Tjames about
+
+Got Bananas Post Object
+  - Timestamp
+  - How Many
+  - Geolocation
+  - Picture (path I assume) - where do the pictures go tho?
+  - User Posted
+  - Status
+
+Need Bananas Request
+  - Radius
+  - Quantity
+  - Timestamp
+
+User
+  - unique ID
+  - username
+  - password
+  - email
+  - phone number
+  - [posts]
+  - [need banana requests] ?
+  - activity ?
+
+Where do we store the posts?
+How do we relate the posts to the users?
+Where should we store images?
+Is it ok to just get location from users ip address?
+  Do we need to ask for permission?
+Flask sessions and cookies?
