@@ -8,11 +8,13 @@ Got Bananas Post Object
   - Picture (path I assume) - where do the pictures go tho?
   - User Posted
   - Status
+  - description
 
 Need Bananas Request
   - Radius
   - Quantity
   - Timestamp
+  - User
 
 User
   - unique ID
