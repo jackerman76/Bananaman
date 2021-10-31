@@ -1,6 +1,6 @@
 """This file contains operations for accessing datastore"""
 from google.cloud import datastore
-from listing import Listing
+from post import post
 from user import User
 
 """Basic CRUD operations"""
@@ -32,58 +32,59 @@ def get_entities(kind):
     return result
 
 
-def userToEntity(user):
+def user_to_entity(user):
     """Converts a User object into an entity"""
     client = get_client()
     key = client.key('user', user.user_id)
     entity = datastore.Entity(key)
-    entity['userId'] = user.user_id
+    entity['user_id'] = user.user_id
     entity['username'] = user.username
     entity['password'] = user.password
     entity['email'] = user.email
-    entity['phoneNumber'] = user.phone_number
-    entity['bananasGiven'] = user.bananasGiven
+    entity['phone_number'] = user.phone_number
+    entity['bananas_given'] = user.bananas_given
     return entity
 
 
-def listingToEntity(listing):
-    """Converts a Listing object into an entity"""
+def post_to_entity(post):
+    """Converts a post object into an entity"""
     client = get_client()
-    key = client.key('listing', listing.listing_id)
+    key = client.key('post', post.post_id)
     entity = datastore.Entity(key)
-    entity['listingId'] = listing.listing_id
-    entity['sellerId'] = listing.seller_id
-    entity['location'] = listing.location
-    entity['sellerUsername'] = listing.seller_username
-    entity['email'] = listing.userEmail
-    entity['phoneNumber'] = listing.userPhoneNumber
-    entity['listingId'] = listing.listing_id
-    entity['amtBananas'] = listing.amtBananas
+    entity['post_id'] = post.post_id
+    entity['user_id'] = post.user_id
+    entity['geolocation'] = post.geolocation
+    entity['quantity'] = post.quantity
+    entity['timestamp'] = post.timestamp
+    entity['description'] = post.description
+    entity['status'] = post.status
+    entity['image'] = post.image
     return entity
 
-def entityToUser(entity):
+def entity_to_user(entity):
     """Converts an entity into a User object"""
-    userId = entity['userId']
+    user_id = entity['user_id']
     username = entity['username']
     password = entity['password']
     email = entity['email']
-    phoneNumber = entity['phoneNumber']
-    bananasGiven = entity['bananasGiven']
-    user = User(userId, username, password, email, phoneNumber, bananasGiven)
+    phone_number = entity['phone_number']
+    bananas_given = entity['bananas_given']
+    user = User(user_id, username, password, email, phone_number, bananas_given)
     return user
 
-def entityToListing(entity):
-    """Converts a entity into a Listing object"""
-    listingId = entity['listingId']
-    sellerId = entity['sellerId']
-    sellerUsername = entity['sellerUsername']
-    location = entity['location']
-    email = entity['email']
-    phoneNumber = entity['phoneNumber']
-    listingId = entity['listingId']
-    amtBananas = entity['amtBananas']
-    listing = Listing(sellerId, sellerUsername, location, email, phoneNumber, listingId, amtBananas)
-    return listing
+def entity_to_post(entity):
+    """Converts a entity into a post object"""
+    post_id = entity['post_id']
+    user_id = entity['user_id']
+    geolocation = entity['geolocation']
+    quantity = entity['quantity']
+    timestamp = entity['timestamp']
+    description = entity['description']
+    status = entity['status']
+    picture = entity['picture']
+    post = Post(post_id, user_id, description, geolocation,
+                 quantity, timestamp, picture, status)
+    return post
 
 def get_client():
     # Note that if we want to specify a project here, we could do it like this:

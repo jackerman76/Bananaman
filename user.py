@@ -4,7 +4,7 @@ import phonenumbers
 class User():
     #Not sure if picture data can belong to a object
     def __init__(self, user_id, username, password, email,
-                 phone_number, bananasGiven):
+                 phone_number, bananas_given):
 
         self.user_id = user_id
         self.username = str(username)
@@ -13,7 +13,7 @@ class User():
         if email: self.email = email
         self.phone_number = None
         if phone_number: self.phone_number = self.set_phone(phone_number)
-        self.bananasGiven = bananasGiven
+        self.bananas_given = bananas_given
 
     def set_phone(self, phone_number):
         self.phone_number = phonenumbers.format_number(

@@ -1,5 +1,7 @@
 import datetime
 from flask import Flask, request, redirect, render_template, url_for, jsonify, session
+from user import *
+from request import *
 
 
 app = Flask(__name__)
@@ -7,14 +9,6 @@ app = Flask(__name__)
 
 @app.route('/', methods=["GET", "POST"])
 def home():
-    if request.form.get("signup") == "True":
-        return (render_template("create_account.html"))
-    if request.form.get("login") == "True":
-        return (render_template("login.html"))
-    if request.form.get("got_bananas") == "True":
-        return (render_template("got_bananas.html"))
-    if request.form.get("need_bananas") == "True":
-        return (render_template("need_bananas.html"))
     return (render_template("home.html"))
 
 @app.route('/login', methods=["GET", "POST"])
@@ -35,7 +29,10 @@ def create_account():
             password1 = request.values.get('password')
             password2 = request.values.get('password2')
             if password1 == password2:
-                # do stuff
+                # account can be successfully created
+                # create user object
+                user = User(username=username, password=password1)
+                user_entity = userToEntity(user)
                 return (redirect("login"))
     return (render_template("create_account.html"))
 
