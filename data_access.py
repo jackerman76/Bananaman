@@ -1,6 +1,6 @@
 """This file contains operations for accessing datastore"""
 from google.cloud import datastore
-from post import post
+from post import Post
 from user import User
 
 """Basic CRUD operations"""
