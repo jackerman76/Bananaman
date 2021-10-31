@@ -1,8 +1,8 @@
 import datetime
 from flask import Flask, request, redirect, render_template, url_for, jsonify, session
 from user import *
-
-
+from data_access import *
+from post import *
 
 app = Flask(__name__)
 
@@ -34,12 +34,13 @@ def login():
 def create_account():
     if request.method == 'POST':
         if request.form.get("create_account") == "True":
+            username = request.values.get('username')
             password1 = request.values.get('password')
             password2 = request.values.get('password2')
             if password1 == password2:
                 # account can be successfully created
                 # create user object
-                user = User(username=username, password=password1)
+                user = User("userid", username, password1)
                 # convert object into entity
                 user_entity = user_to_entity(user)
                 # add entity
