@@ -3,6 +3,7 @@ from flask import Flask, request, redirect, render_template, url_for, jsonify, s
 from user import *
 from data_access import *
 from post import *
+from request import *
 
 app = Flask(__name__)
 
@@ -57,7 +58,11 @@ def got_bananas():
 
 @app.route('/need_bananas', methods=["GET", "POST"])
 def need_bananas():
-    return (render_template("need_bananas.html"))
+    if request.method == 'POST':
+        if request.form.get("request_bananas") == "True":
+
+        return (render_template("need_bananas.html"))
+    return (render_template("need_bananas_form.html"))
 
 
 if __name__ == '__main__':
