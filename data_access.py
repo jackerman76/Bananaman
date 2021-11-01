@@ -105,5 +105,25 @@ def entity_to_request(entity):
                  quantity, radius)
     return request
 
+def get_user_entity(user):
+    """Takes user object and returns user entity"""
+    client = get_client()
+    query = client.query(kind="user")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
+def query_user_posts(user):
+    client = get_client()
+    query = client.query(kind="post")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
+def query_user_requests(user):
+    client = get_client()
+    query = client.query(kind="request")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
+
 def get_client():
     return datastore.Client()
