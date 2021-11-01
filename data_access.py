@@ -38,7 +38,6 @@ def user_to_entity(user):
     client = get_client()
     key = client.key('user', user.user_id)
     entity = datastore.Entity(key)
-    entity['user_id'] = user.user_id
     entity['username'] = user.username
     entity['password'] = user.password
     entity['email'] = user.email
@@ -52,7 +51,6 @@ def post_to_entity(post):
     client = get_client()
     key = client.key('post', post.post_id)
     entity = datastore.Entity(key)
-    entity['post_id'] = post.post_id
     entity['user_id'] = post.user_id
     entity['geolocation'] = post.geolocation
     entity['quantity'] = post.quantity
