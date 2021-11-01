@@ -1,20 +1,13 @@
 {% extends '_base.html' %}
 {% block header %}
-<style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+  <div class="container">
+    <h1> Need Bananas? </h1>
+  </div>
+  <style>
+    .card{
+    margin-bottom: 1.5rem;
     }
-  }
-</style>
+  </style>
 {% endblock %}
 {% block content %}
   <div class="container">
@@ -23,20 +16,10 @@
     </head>
   </div>
 
-  <div class="container">
-    <body>
-    	<header>
-    		<h1> Need Bananas? </h1>
-    		<br>
-    	</header>
-    	<p> This page will allow users to search through Bananaman users that are currently offering up their bananas. Users will be able to filter through banana listings by indicating their location (by their device location or zipcode input), selecting a mile radius that they wish to search in, the number of bananas they wish to receive, and the desired ripeness level.
-    	</p>
-  </div>
-
   <div class="album py-5 bg-light">
     <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
         <div class="col">
           <div class="card shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
@@ -86,6 +69,7 @@
           </div>
         </div>
       </div>
+
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col">
           <div class="card shadow-sm">
@@ -135,8 +119,9 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+     </div>
+
+     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col">
           <div class="card shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
@@ -185,7 +170,7 @@
             </div>
           </div>
         </div>
-    
+
       </div>
     </div>
   </div>
