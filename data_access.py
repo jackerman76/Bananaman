@@ -61,6 +61,18 @@ def post_to_entity(post):
     entity['image'] = post.image
     return entity
 
+def request_to_entity(request):
+    """Converts a request object into an entity"""
+    client = get_client()
+    key = client.key('request', request.request_id)
+    entity = datastore.Entity(key)
+    entity['user_id'] = request.user_id
+    entity['timestamp'] = request.timestamp
+    entity['quantity'] = request.quantity
+    entity['radius'] = request.radius
+    return entity
+
+
 def entity_to_user(entity):
     """Converts an entity into a User object"""
     user_id = entity['user_id']
@@ -84,6 +96,16 @@ def entity_to_post(entity):
     picture = entity['picture']
     post = Post(post_id, user_id, description, geolocation,
                  quantity, timestamp, picture, status)
+    return post
+
+def entity_to_request(entity):
+    """Converts a entity into a request object"""
+    user_id = entity['user_id']
+    timestamp = entity['timestamp']
+    quantity = entity['quantity']
+    radius = entity['radius']
+    request = Request(request_id, user_id, timestamp,
+                 quantity, radius)
     return post
 
 def get_client():
