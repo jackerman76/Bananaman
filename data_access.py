@@ -40,8 +40,10 @@ def user_to_entity(user):
     entity = datastore.Entity(key)
     entity['username'] = user.username
     entity['password'] = user.password
-    entity['email'] = user.email
-    entity['phone_number'] = user.phone_number
+    if user.email:
+        entity['email'] = user.email
+    if user.phone_number:
+        entity['phone_number'] = user.phone_number
     entity['bananas_given'] = user.bananas_given
     return entity
 
