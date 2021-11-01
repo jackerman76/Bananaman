@@ -25,10 +25,12 @@ def login():
         # create user object
         user = User(username, password)
         # check if user exists
-        temp = get_user_entity(user)
-        if temp['username'] == username and temp['password'] == password:
+        entity = get_user_entity(user)
+        user2 = entity_to_user(entity)
+        if username == user2.username and password == user2.password:
             return (render_template("home.html"))
-        else: #user not in database
+        else:
+            # Username or Password does not exist
             return (redirect("login"))
 
     #return render_template("home.html")
@@ -38,25 +40,27 @@ def login():
 def create_account():
     if request.method == 'POST':
         if request.form.get("create_account") == "True":
+            email = request.values.get('email')
             username = request.values.get('username')
             password1 = request.values.get('password')
             password2 = request.values.get('password2')
             if password1 == password2:
                 # account can be successfully created
                 # create user object
-                user = User(username, password1)
+                user = User(username, password1, email)
 
                 temp = get_user_entity(user)
-                if temp['username'] == username and temp['password'] == password1:
-                    return (render_template("login.html"))
+                if temp:
+                    #User already exists error
+                    entity_to_user(temp)
+                    return(render_template("create_account.html"))
                 else:
-                    # convert object into entity
-                    user_entity = user_to_entity(user)
-                    # add entity
-                    update_entity(user_entity)
-                    return (redirect("login"))
-                    
-    return (render_template("create_account.html"))
+                    entity = user_to_entity(user)
+                    update_entity(entity)
+                    return (redirect("home"))
+            else:
+                #Password is not equal message
+                return (render_template("create_account.html"))
 
 @app.route('/got_bananas', methods=["GET", "POST"])
 def got_bananas():

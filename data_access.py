@@ -42,8 +42,8 @@ def user_to_entity(user):
     entity['password'] = user.password
     if user.email:
         entity['email'] = user.email
-    if user.phone_number:
-        entity['phone_number'] = user.phone_number
+#    if user.phone_number:
+#        entity['phone_number'] = user.phone_number
     entity['bananas_given'] = user.bananas_given
     return entity
 
@@ -79,9 +79,9 @@ def entity_to_user(entity):
     username = entity['username']
     password = entity['password']
     email = entity['email']
-    phone_number = entity['phone_number']
+#    phone_number = entity['phone_number']
     bananas_given = entity['bananas_given']
-    user = User(username, password, email, phone_number, bananas_given)
+    user = User(username, password, email, bananas_given)
     return user
 
 def entity_to_post(entity):
