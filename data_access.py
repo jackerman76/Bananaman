@@ -107,6 +107,26 @@ def entity_to_request(entity):
                  quantity, radius)
     return post
 
+def get_user_entity(user):
+    """Takes user object and returns user entity"""
+    client = get_client()
+    query = client.query(kind="user")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
+def query_user_posts(user):
+    client = get_client()
+    query = client.query(kind="post")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
+def query_user_requests(user):
+    client = get_client()
+    query = client.query(kind="request")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
+
 def get_client():
     # Note that if we want to specify a project here, we could do it like this:
     # return datastore.Client('your-project-id')
