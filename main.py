@@ -43,7 +43,7 @@ def create_account():
             if password1 == password2:
                 # account can be successfully created
                 # create user object
-                user = User("userid", username, password1)
+                user = User(username, password1)
                 # convert object into entity
                 user_entity = user_to_entity(user)
                 # add entity
