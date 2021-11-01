@@ -26,7 +26,7 @@ def login():
         user = User(username, password)
         # check if user exists
         temp = get_user_entity(user)
-        if temp['username'] == username:
+        if temp['username'] == username and temp['password'] == password:
             return (render_template("home.html"))
         else: #user not in database
             return (redirect("login"))
@@ -45,11 +45,17 @@ def create_account():
                 # account can be successfully created
                 # create user object
                 user = User(username, password1)
-                # convert object into entity
-                user_entity = user_to_entity(user)
-                # add entity
-                update_entity(user_entity)
-                return (redirect("login"))
+
+                temp = get_user_entity(user)
+                if temp['username'] == username and temp['password'] == password1:
+                    return (render_template("login.html"))
+                else:
+                    # convert object into entity
+                    user_entity = user_to_entity(user)
+                    # add entity
+                    update_entity(user_entity)
+                    return (redirect("login"))
+                    
     return (render_template("create_account.html"))
 
 @app.route('/got_bananas', methods=["GET", "POST"])
@@ -60,8 +66,7 @@ def got_bananas():
 def need_bananas():
     if request.method == 'POST':
         if request.form.get("request_bananas") == "True":
-
-        return (render_template("need_bananas.html"))
+            return (render_template("need_bananas.html"))
     return (render_template("need_bananas_form.html"))
 
 

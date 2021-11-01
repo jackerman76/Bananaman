@@ -110,16 +110,16 @@ def get_user_entity(user):
     client = get_client()
     query = client.query(kind="user")
     query = query.add_filter("username", "=", user.username)
-    return query.fetch()
+    # query fetch returns an iterator
+    for i in query.fetch():
+        # return first (and only) one
+        return i
 
 def query_user_posts(user):
     client = get_client()
     query = client.query(kind="post")
     query = query.add_filter("username", "=", user.username)
-    # query fetch returns an iterator
-    for i in query.fetch():
-        # return first (and only) one
-        return i
+    return query.fetch()
 
 def query_user_requests(user):
     client = get_client()

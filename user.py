@@ -3,8 +3,8 @@ import json
 import phonenumbers
 class User():
     #Not sure if picture data can belong to a object
-    def __init__(self, username, password, email = None,
-                 phone_number = None, bananas_given = 0):
+    def __init__(self, username, password, email = "None",
+                 phone_number = "None", bananas_given = 0):
 
         self.username = str(username)
         self.password = str(password)
