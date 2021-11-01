@@ -2,6 +2,7 @@
 from google.cloud import datastore
 from post import Post
 from user import User
+from request import Request
 
 """Basic CRUD operations"""
 def retrieve_entity(id, kind='user'):
