@@ -36,9 +36,8 @@ def get_entities(kind):
 def user_to_entity(user):
     """Converts a User object into an entity"""
     client = get_client()
-    key = client.key('user', user.user_id)
+    key = client.key('user')
     entity = datastore.Entity(key)
-    entity['user_id'] = user.user_id
     entity['username'] = user.username
     entity['password'] = user.password
     entity['email'] = user.email
@@ -50,10 +49,9 @@ def user_to_entity(user):
 def post_to_entity(post):
     """Converts a post object into an entity"""
     client = get_client()
-    key = client.key('post', post.post_id)
+    key = client.key('post')
     entity = datastore.Entity(key)
-    entity['post_id'] = post.post_id
-    entity['user_id'] = post.user_id
+    entity['username'] = post.username
     entity['geolocation'] = post.geolocation
     entity['quantity'] = post.quantity
     entity['timestamp'] = post.timestamp
@@ -65,9 +63,9 @@ def post_to_entity(post):
 def request_to_entity(request):
     """Converts a request object into an entity"""
     client = get_client()
-    key = client.key('request', request.request_id)
+    key = client.key('request')
     entity = datastore.Entity(key)
-    entity['user_id'] = request.user_id
+    entity['username'] = request.username
     entity['timestamp'] = request.timestamp
     entity['quantity'] = request.quantity
     entity['radius'] = request.radius
@@ -76,42 +74,56 @@ def request_to_entity(request):
 
 def entity_to_user(entity):
     """Converts an entity into a User object"""
-    user_id = entity['user_id']
     username = entity['username']
     password = entity['password']
     email = entity['email']
     phone_number = entity['phone_number']
     bananas_given = entity['bananas_given']
-    user = User(user_id, username, password, email, phone_number, bananas_given)
+    user = User(username, password, email, phone_number, bananas_given)
     return user
 
 def entity_to_post(entity):
     """Converts a entity into a post object"""
-    post_id = entity['post_id']
-    user_id = entity['user_id']
+    username = entity['username']
     geolocation = entity['geolocation']
     quantity = entity['quantity']
     timestamp = entity['timestamp']
     description = entity['description']
     status = entity['status']
     picture = entity['picture']
-    post = Post(post_id, user_id, description, geolocation,
+    post = Post(username, description, geolocation,
                  quantity, timestamp, picture, status)
     return post
 
 def entity_to_request(entity):
     """Converts a entity into a request object"""
-    user_id = entity['user_id']
+    username = entity['username']
     timestamp = entity['timestamp']
     quantity = entity['quantity']
     radius = entity['radius']
-    request = Request(request_id, user_id, timestamp,
+    request = Request(username, timestamp,
                  quantity, radius)
-    return post
+    return request
+
+def get_user_entity(user):
+    """Takes user object and returns user entity"""
+    client = get_client()
+    query = client.query(kind="user")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
+def query_user_posts(user):
+    client = get_client()
+    query = client.query(kind="post")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
+def query_user_requests(user):
+    client = get_client()
+    query = client.query(kind="request")
+    query = query.add_filter("username", "=", user.username)
+    return query.fetch()
+
 
 def get_client():
-    # Note that if we want to specify a project here, we could do it like this:
-    # return datastore.Client('your-project-id')
-    # Calling Client() with no argument will access the environment variables
-    # for your project - which will be fine for your deployed application.
     return datastore.Client()
