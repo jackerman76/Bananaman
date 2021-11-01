@@ -24,12 +24,12 @@ def login():
         # create user object
         user = User(username, password)
         # check if user exists
-        # if existing_user(user):
-            # return (render_template("home.html"))
-        # else: user not in database
-            # return (redirect("login"))
+        temp = get_user_entity(user)
+        if temp['username'] == username:
+            return (render_template("home.html"))
+        else: #user not in database
+            return (redirect("login"))
 
-        return (render_template("home.html"))
     #return render_template("home.html")
     return (render_template("login.html"))
 
