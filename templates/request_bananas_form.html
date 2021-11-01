@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+{% block header %}
+<div class="container">
+  <h1>Login</h1>
+</div>
+{% endblock %}
+{% block content %}
+
+  <div class="container">
+      <form>
+        <section>
+            <div class="form-group">
+              <label for="quantity"><b>Quantity</b></label><br>
+              <input type="number" class="form-control" placeholder="How many bananas do you want?" name="quantity" required>
+              <br>
+            </div>
+
+            <div class="form-group">
+              <label for="radius"><b>Radius (mi)</b></label><br>
+              <input type="number" class="form-control" placeholder="How far are you willing to travel for your bananas? (miles)" name="radius" required>
+              <br>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" value="True" name="request_bananas" formmethod="POST" class="btn btn-primary">Submit Request</button>
+              <br>
+            </div>
+
+        </section>
+      </form>
+      <br>
+  </div>
+{% endblock %}
