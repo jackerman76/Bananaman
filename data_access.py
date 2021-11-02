@@ -120,7 +120,7 @@ def get_user_entity(user):
 def query_posts():
     client = get_client()
     query = client.query(kind="post")
-    list = {}
+    list = []
     for i in query.fetch():
         list.append(i)
     return list
