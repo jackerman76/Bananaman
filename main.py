@@ -26,9 +26,14 @@ def login():
         user = User(username, password)
         # check if user exists
         entity = get_user_entity(user)
-        user2 = entity_to_user(entity)
-        if username == user2.username and password == user2.password:
-            return (render_template("home.html"))
+        if entity:
+            #User exists
+            user2 = entity_to_user(entity)
+            if user2.password == password:
+                return (url_for('home', username=username))
+            else:
+                # Username and Password do not match
+                return (redirect("login"))
         else:
             # Username or Password does not exist
             return (redirect("login"))
@@ -65,6 +70,7 @@ def create_account():
 
 @app.route('/got_bananas', methods=["GET", "POST"])
 def got_bananas():
+    #Write post to datastore
     return (render_template("got_bananas.html"))
 
 @app.route('/need_bananas', methods=["GET", "POST"])
