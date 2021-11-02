@@ -88,7 +88,7 @@ def got_bananas():
             entity = post_to_entity(post)
             update_entity(entity)
             return (redirect("/"))
-            
+
     return (render_template("got_bananas.html"))
     
 @app.route('/need_bananas', methods=["GET", "POST"])
@@ -97,6 +97,11 @@ def need_bananas():
         if request.form.get("request_bananas") == "True":
             return (render_template("need_bananas.html"))
     return (render_template("request_bananas_form.html"))
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.pop('username', default=None)
+    return (redirect(url_for('login')))
 
 
 if __name__ == '__main__':
