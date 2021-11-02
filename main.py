@@ -57,7 +57,7 @@ def create_account():
                 else:
                     entity = user_to_entity(user)
                     update_entity(entity)
-                    return (redirect("home"))
+                    return (redirect("/"))
             else:
                 #Password is not equal message
                 return (render_template("create_account.html"))
