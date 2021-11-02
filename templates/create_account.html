@@ -32,13 +32,19 @@
               <br>
           </div>
           <div class="form-group">
-              <button type="submit" name="create_account" onclick="return isMatching()" value="True" formmethod="post"  class="btn btn-primary">Create Account</button>
+              <button type="submit" name="create_account" onclick="return isValidPassword()" value="True" formmethod="post"  class="btn btn-primary">Create Account</button>
           </div>
 
           <script>
-              function isMatching(){
+              // checks that password inputs match and password is long enough
+              function isValidPassword(){
                 if(document.getElementById("password").value != document.getElementById("password2").value){
                     alert("Passwords must match! Please try again.");
+                    return false;
+                };
+                var string = document.getElementById("password").value;
+                if(string.length < 8){
+                    alert("Password is not long enough. It must be at least 8 characters.");
                     return false;
                 };
                 return true;
