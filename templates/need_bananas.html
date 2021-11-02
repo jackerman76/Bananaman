@@ -17,23 +17,17 @@
         {% for i in list %}
           <div class="card shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Bananas" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Bananas</text></svg>
+            
             <div class="card-body">
-<<<<<<< HEAD
-              <p class="card-text cardtext">3 Brown, Mushy Bananas - 1 week old</p>
-=======
               <p class="card-text">{{ i['description'] }}</p>
               <p class="card-text">{{ i['quantity'] + " Bananas" }}</p>
               <p class="card-text">{{ i['username'] }}</p>
->>>>>>> 6b6204b472daa9fbbf75fc9cce641f77a8d0941c
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
                 </div>
-<<<<<<< HEAD
-=======
                 <small class="text-muted">{{ i['timestamp'] }}</small>
->>>>>>> 6b6204b472daa9fbbf75fc9cce641f77a8d0941c
               </div>
             </div>
           </div>
