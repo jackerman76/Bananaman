@@ -71,9 +71,16 @@ def create_account():
 @app.route('/got_bananas', methods=["GET", "POST"])
 def got_bananas():
     #Write post to datastore
-    email = request.values.get('email')
-    description = request.values.get('email')
-
+    quantity = request.values.get('quantity')
+    description = request.values.get('description')
+    username = request.args.get('username')
+   
+    if not username:
+        return (redirect(url_for('login')))
+    
+    post = Post(username, description, "temp", quantity)
+    entity = post_to_entity(post)
+    update_entity(entity)
     return (render_template("got_bananas.html"))
     
 @app.route('/need_bananas', methods=["GET", "POST"])
