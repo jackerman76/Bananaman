@@ -30,7 +30,7 @@ def login():
             #User exists
             user2 = entity_to_user(entity)
             if user2.password == password:
-                return (redirect('/', username=username))
+                return (redirect(url_for('/', username=username)))
             else:
                 # Username and Password do not match
                 return (redirect("login"))
@@ -71,8 +71,11 @@ def create_account():
 @app.route('/got_bananas', methods=["GET", "POST"])
 def got_bananas():
     #Write post to datastore
-    return (render_template("got_bananas.html"))
+    email = request.values.get('email')
+    description = request.values.get('email')
 
+    return (render_template("got_bananas.html"))
+    
 @app.route('/need_bananas', methods=["GET", "POST"])
 def need_bananas():
     if request.method == 'POST':
