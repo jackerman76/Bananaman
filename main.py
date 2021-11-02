@@ -18,7 +18,7 @@ def about():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.form.get("create_account") == "True":
-        return (render_template("create_account.html"))
+        return (redirect("create_account"))
     if request.form.get("login") == "True":
         username = request.values.get('username')
         password = request.values.get('password')
