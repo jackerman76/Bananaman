@@ -61,7 +61,7 @@ def create_account():
                 if temp:
                     #User already exists error
                     entity_to_user(temp)
-                    return(render_template("create_account.html"))
+                    return(render_template("login.html"))
                 else:
                     entity = user_to_entity(user)
                     update_entity(entity)
@@ -70,7 +70,7 @@ def create_account():
             else:
                 #Password is not equal message
                 return (render_template("create_account.html"))
-    return (render_template("create_account.html"))
+        return (render_template("create_account.html"))
 
 @app.route('/got_bananas', methods=["GET", "POST"])
 def got_bananas():
