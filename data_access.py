@@ -59,7 +59,7 @@ def post_to_entity(post):
     entity['timestamp'] = post.timestamp
     entity['description'] = post.description
     entity['status'] = post.status
-    entity['image'] = post.image
+   # entity['image'] = post.image
     return entity
 
 def request_to_entity(request):
