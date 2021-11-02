@@ -93,10 +93,9 @@ def got_bananas():
     
 @app.route('/need_bananas', methods=["GET", "POST"])
 def need_bananas():
-    if request.method == 'POST':
-        if request.form.get("request_bananas") == "True":
-            return (render_template("need_bananas.html"))
-    return (render_template("request_bananas_form.html"))
+    list = query_posts()
+
+    return (render_template("need_bananas.html", list=list))
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
