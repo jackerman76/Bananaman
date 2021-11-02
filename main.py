@@ -7,6 +7,8 @@ from request import *
 
 app = Flask(__name__)
 
+app.secret_key = 'SECRET_KEY'
+
 @app.route('/', methods=["GET", "POST"])
 @app.route('/home', methods=["GET", "POST"])
 def home():
