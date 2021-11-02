@@ -83,7 +83,7 @@ def got_bananas():
             quantity = request.values.get('quantity')
             description = request.values.get('description')
             username = session['username']
-    
+
             post = Post(username, description, "temp", quantity)
             entity = post_to_entity(post)
             update_entity(entity)
