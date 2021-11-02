@@ -30,7 +30,7 @@ def login():
             #User exists
             user2 = entity_to_user(entity)
             if user2.password == password:
-                return (redirect(url_for('/', username=username)))
+                return (redirect(url_for('home', username=username)))
             else:
                 # Username and Password do not match
                 return (redirect("login"))
