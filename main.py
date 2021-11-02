@@ -4,7 +4,7 @@ from user import *
 from data_access import *
 from post import *
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static-files-folder')
 
 
 @app.route('/', methods=["GET", "POST"])

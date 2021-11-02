@@ -2,9 +2,9 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-
+      <link rel="icon" type="image/x-icon" href="../static-files-folder/Iconicon-Veggies-Bananas.ico" />
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" href="/static/style.css">
+      <link rel="stylesheet" type="text/css" href="/static-files-folder/style.css">
 
       <title>{% block title %}{% endblock %}</title>
 
@@ -17,31 +17,38 @@
         #}
         {% if error_message %}<div><strong>{{error_message}}</strong></div>{% endif %}
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-          <a class="navbar-brand" href="{{ url_for('home') }}">Bananaman</a>
+          <a class="navbar-brand" style="color: #ffffff;" href="{{ url_for('home') }}">Bananaman</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse color-nav" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
 
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('login') }}">Login<span class="sr-only">(current)</span></a>
+                <a class="nav-link" style="color: #ffffff;" href="{{ url_for('login') }}">Login<span class="sr-only">(current)</span></a>
               </li>
 
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('create_account') }}">Create Account<span class="sr-only">(current)</span></a>
+                <a class="nav-link" style="color: #ffffff;" href="{{ url_for('create_account') }}">Create Account<span class="sr-only">(current)</span></a>
               </li>
 
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('got_bananas') }}">Got Bananas<span class="sr-only">(current)</span></a>
+                <a class="nav-link" style="color: #ffffff;" href="{{ url_for('got_bananas') }}">Got Bananas<span class="sr-only">(current)</span></a>
               </li>
 
               <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('need_bananas') }}">Need Bananas<span class="sr-only">(current)</span></a>
+                <a class="nav-link" style="color: #ffffff;" href="{{ url_for('need_bananas') }}">Need Bananas<span class="sr-only">(current)</span></a>
               </li>
 
            </ul>
+           <form class="d-flex">
+            <button class="btn btn-outline-light" type="submit">
+                <i class="bi-cart-fill me-1" style="color: #ffffff;"></i>
+                Cart
+                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+            </button>
+        </form>
          </div>
 
         </nav>

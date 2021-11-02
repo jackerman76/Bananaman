@@ -5,3 +5,37 @@
     margin-top: 1.5rem
     }
 
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center {
+    text-align: center;
+}
+
+p {
+    font-family: sans-serif;
+    font-size: 17px;
+}
+
+.text {
+    color: rgb(48, 46, 46);
+    font-size: 17px;
+}
+
+.form {
+    width: 300px;
+    margin: auto;
+    position: relative;
+}
+
+h1 {
+    color: rgb(20, 14, 105);
+    font-weight: bold;
+}
+
+.cardtext {
+    font-size: 15px;
+}
