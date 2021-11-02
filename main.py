@@ -75,16 +75,20 @@ def create_account():
 @app.route('/got_bananas', methods=["GET", "POST"])
 def got_bananas():
     #Write post to datastore
-    quantity = request.values.get('quantity')
-    description = request.values.get('description')
     if not session.get('username'):
         return (redirect(url_for('login')))
-
-    username = session['username']
     
-    post = Post(username, description, "temp", quantity)
-    entity = post_to_entity(post)
-    update_entity(entity)
+    if request.method == 'POST':
+        if request.form.get("request_bananas") == "True":
+            quantity = request.values.get('quantity')
+            description = request.values.get('description')
+            username = session['username']
+    
+            post = Post(username, description, "temp", quantity)
+            entity = post_to_entity(post)
+            update_entity(entity)
+            return (redirect("/"))
+            
     return (render_template("got_bananas.html"))
     
 @app.route('/need_bananas', methods=["GET", "POST"])
