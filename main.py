@@ -7,8 +7,8 @@ from request import *
 
 app = Flask(__name__)
 
-
 @app.route('/', methods=["GET", "POST"])
+@app.route('/home', methods=["GET", "POST"])
 def home():
     return (render_template("home.html"))
 
@@ -30,7 +30,8 @@ def login():
             #User exists
             user2 = entity_to_user(entity)
             if user2.password == password:
-                return (redirect(url_for('home', username=username)))
+                session['username'] = username
+                return (redirect(url_for('home')))
             else:
                 # Username and Password do not match
                 return (redirect("login"))
@@ -62,6 +63,7 @@ def create_account():
                 else:
                     entity = user_to_entity(user)
                     update_entity(entity)
+                    session['username'] = username
                     return (redirect("/"))
             else:
                 #Password is not equal message
@@ -73,7 +75,7 @@ def got_bananas():
     #Write post to datastore
     quantity = request.values.get('quantity')
     description = request.values.get('description')
-    username = request.args.get('username')
+    username = session['username']
    
     if not username:
         return (redirect(url_for('login')))
