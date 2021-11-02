@@ -32,12 +32,22 @@
               <br>
           </div>
           <div class="form-group">
-              <button type="submit" name="create_account" formmethod="post" value="True" class="btn btn-primary">Create Account</button>
+              <button type="submit" onclick="return isEqual()" name="create_account" formmethod="post" value="True" class="btn btn-primary">Create Account</button>
           </div>
+
         </form>
         </section>
 
       <br>
 </div>
+
+<script>
+    function isEqual(){
+      if(document.getElementById('password').value != document.getElementById('password2').value){
+        alert("Passwords don't match. Please try again.");
+        return false;
+      };
+    }
+</script>
 
 {% endblock %}
