@@ -77,10 +77,10 @@ def got_bananas():
     #Write post to datastore
     quantity = request.values.get('quantity')
     description = request.values.get('description')
-    username = session['username']
-   
-    if not username:
+    if not session.get('username'):
         return (redirect(url_for('login')))
+
+    username = session['username']
     
     post = Post(username, description, "temp", quantity)
     entity = post_to_entity(post)
