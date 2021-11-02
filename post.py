@@ -1,7 +1,7 @@
 import time
 class Post():
     def __init__(self, username, description, geolocation,
-                 quantity, picture, status, timestamp=None):
+                 quantity, picture="None", status="Available", timestamp=None):
         # post_id is id of post in datastore
         # user_id is id of associated user in datastore
         # Implement pictures and geolocation later

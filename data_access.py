@@ -40,8 +40,10 @@ def user_to_entity(user):
     entity = datastore.Entity(key)
     entity['username'] = user.username
     entity['password'] = user.password
-    entity['email'] = user.email
-    entity['phone_number'] = user.phone_number
+    if user.email:
+        entity['email'] = user.email
+#    if user.phone_number:
+#        entity['phone_number'] = user.phone_number
     entity['bananas_given'] = user.bananas_given
     return entity
 
@@ -57,7 +59,7 @@ def post_to_entity(post):
     entity['timestamp'] = post.timestamp
     entity['description'] = post.description
     entity['status'] = post.status
-    entity['image'] = post.image
+   # entity['image'] = post.image
     return entity
 
 def request_to_entity(request):
@@ -77,9 +79,9 @@ def entity_to_user(entity):
     username = entity['username']
     password = entity['password']
     email = entity['email']
-    phone_number = entity['phone_number']
+#    phone_number = entity['phone_number']
     bananas_given = entity['bananas_given']
-    user = User(username, password, email, phone_number, bananas_given)
+    user = User(username, password, email, bananas_given)
     return user
 
 def entity_to_post(entity):
@@ -110,13 +112,18 @@ def get_user_entity(user):
     client = get_client()
     query = client.query(kind="user")
     query = query.add_filter("username", "=", user.username)
-    return query.fetch()
+    # query fetch returns an iterator
+    for i in query.fetch():
+        # return first (and only) one
+        return i
 
-def query_user_posts(user):
+def query_posts():
     client = get_client()
     query = client.query(kind="post")
-    query = query.add_filter("username", "=", user.username)
-    return query.fetch()
+    list = []
+    for i in query.fetch():
+        list.append(i)
+    return list
 
 def query_user_requests(user):
     client = get_client()
