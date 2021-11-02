@@ -70,7 +70,7 @@ def create_account():
             else:
                 #Password is not equal message
                 return (render_template("create_account.html"))
-        return (render_template("create_account.html"))
+    return (render_template("create_account.html"))
 
 @app.route('/got_bananas', methods=["GET", "POST"])
 def got_bananas():
