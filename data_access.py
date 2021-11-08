@@ -32,14 +32,6 @@ def get_entities(kind):
         result.append(entity)
     return result
 
-def get_posts():
-    '''Returns list of post objects'''
-    entities = get_entities("post")
-    result = []
-    for e in entities:
-        result.append(entity_to_post(e))
-    return result
-
 
 def user_to_entity(user):
     """Converts a User object into an entity"""
@@ -130,7 +122,7 @@ def query_posts():
     query = client.query(kind="post")
     list = []
     for i in query.fetch():
-        list.append(i)
+        list.append(entity_to_post(i))
     return list
 
 def query_user_requests(user):
