@@ -19,15 +19,15 @@
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Bananas" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Bananas</text></svg>
             
             <div class="card-body">
-              <p class="card-text cardtext">{{ i['description'] }}</p>
-              <p class="card-text cardtext">{{ i['quantity'] + " Bananas" }}</p>
-              <p class="card-text cardtext">{{ i['username'] }}</p>
+              <p class="card-text cardtext">{{ i.description }}</p>
+              <p class="card-text cardtext">{{ i.quantity + " Bananas" }}</p>
+              <p class="card-text cardtext">{{ i.username }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
                 </div>
-                <small class="text-muted">{{ i['timestamp'] }}</small>
+                <small class="text-muted">{{ i.get_formatted_time() }}</small>
               </div>
             </div>
           </div>
