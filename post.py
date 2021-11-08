@@ -1,4 +1,6 @@
 import time
+from time import gmtime, strftime
+
 class Post():
     def __init__(self, username, description, geolocation,
                  quantity, picture="None", status="Available", timestamp=None):
@@ -12,6 +14,8 @@ class Post():
         if timestamp:
             self.timestamp = timestamp
         else:
-            self.timestamp = time.time()
+            self.timestamp = time.localtime()
         self.picture = picture
         self.status = status 
+        
+        
