@@ -3,7 +3,7 @@ from time import gmtime, strftime
 
 class Post():
     def __init__(self, username, description, geolocation,
-                 quantity, picture="None", status="Available", timestamp=None):
+                 quantity, status="Available", timestamp=None, picture="None"):
         # post_id is id of post in datastore
         # user_id is id of associated user in datastore
         # Implement pictures and geolocation later
@@ -20,10 +20,13 @@ class Post():
         
     def get_time(self):
         return time.localtime(self.timestamp)
+
     def get_time_as_time(self):
         return str(time.strftime("%H:%M %p", self.get_time()))
+
     def get_time_as_date(self):
         return str(time.strftime("%x", self.get_time()))
+
     def get_time_as_hrs_ago(self):
         hrs = int(time.strftime("%H", time.localtime())) - int(time.strftime("%H", self.get_time()))
         return str(hrs) + " hours ago"
