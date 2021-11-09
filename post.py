@@ -20,8 +20,7 @@ class Post():
         self.status = status 
         
     def get_time(self):
-        time.timezone = '5'
-        return time.localtime(self.timestamp)
+        return time.localtime(self.timestamp) - time.timezone
 
     def get_time_as_time(self):
         return str(time.strftime("%H:%M %p", self.get_time()))
