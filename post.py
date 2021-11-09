@@ -1,5 +1,6 @@
 import time
 from time import gmtime, strftime
+import datetime
 
 class Post():
     def __init__(self, username, description, geolocation,
@@ -19,6 +20,7 @@ class Post():
         self.status = status 
         
     def get_time(self):
+        time.timezone = '5'
         return time.localtime(self.timestamp)
 
     def get_time_as_time(self):
