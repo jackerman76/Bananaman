@@ -94,7 +94,7 @@ def entity_to_post(entity):
     status = entity['status']
   #  picture = entity['picture']
     post = Post(username, description, geolocation,
-                 quantity, timestamp, picture, status)
+                 quantity, status, timestamp)
     return post
 
 def entity_to_request(entity):
