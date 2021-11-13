@@ -22,8 +22,8 @@ class Post():
     #def get_time(self):
         #return time.localtime(self.timestamp)
 
-    #def get_dt(self):
-    #    return datetime.fromtimestamp(self.timestamp)
+    def get_dt(self):
+        return datetime.fromtimestamp(self.timestamp)
 
 #    def get_time_as_time(self):
 #        return str(time.strftime("%H:%M %p", self.get_time()))
