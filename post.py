@@ -1,6 +1,6 @@
 import time
 from time import gmtime, strftime
-import datetime
+from datetime import datetime
 
 class Post():
     def __init__(self, username, description, geolocation,
