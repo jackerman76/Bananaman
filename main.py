@@ -8,6 +8,7 @@ from request import *
 import urllib
 from uploadedFile import UploadedFile
 from displayInfo import DisplayInfo
+from google.cloud import storage
 
 app = Flask(__name__, static_folder='static-files-folder')
 
