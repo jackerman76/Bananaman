@@ -49,10 +49,10 @@ class Post():
     def get_formatted_time(self):
         delta = datetime.now() - self.get_dt()
         if delta.days != 0:
-            return str(days) + " days ago"
+            return str(int(days)) + " days ago"
 
         if delta.seconds > 3600:
-            return str(delta.seconds/3600) + " hours ago"
+            return str(int(delta.seconds/3600)) + " hours ago"
 
         else:
-            return str(delta.seconds/60) + " minutes ago"
+            return str(int(delta.seconds/60)) + " minutes ago"
