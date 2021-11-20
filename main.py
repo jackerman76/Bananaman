@@ -4,10 +4,15 @@ from user import *
 from data_access import *
 from post import *
 from request import *
+import fileapp
+import urllib
+from uploadedFile import UploadedFile
+from displayInfo import DisplayInfo
 
 app = Flask(__name__, static_folder='static-files-folder')
 
 app.secret_key = 'SECRET_KEY'
+_BUCKET_NAME = "banana_post_pictures"
 
 @app.route('/', methods=["GET", "POST"])
 @app.route('/home', methods=["GET", "POST"])
@@ -77,20 +82,33 @@ def got_bananas():
     #Write post to datastore
     if not session.get('username'):
         return (redirect(url_for('login')))
-    
+
     if request.method == 'POST':
         if request.form.get("request_bananas") == "True":
             quantity = request.values.get('quantity')
             description = request.values.get('description')
             username = session['username']
 
-            post = Post(username, description, "temp", quantity)
+            uploaded_file = request.files.get('file')
+            filename = request.form.get('filename')
+            gcs_client = storage.Client()
+            storage_bucket = gcs_client.get_bucket(_BUCKET_NAME)
+            blob = storage_bucket.blob(uploaded_file.filename)
+            c_type = uploaded_file.content_type
+            blob.upload_from_string(uploaded_file.read(), content_type=c_type)
+
+            #fileapp.save_file(filename, blob.public_url)
+            url = blob.public_url
+
+
+
+            post = Post(username, description, "temp", quantity, picture=url)
             entity = post_to_entity(post)
             update_entity(entity)
             return (redirect("/"))
 
     return (render_template("got_bananas.html"))
-    
+
 @app.route('/need_bananas', methods=["GET", "POST"])
 def need_bananas():
     list = query_posts()

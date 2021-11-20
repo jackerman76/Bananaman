@@ -19,32 +19,9 @@ class Post():
         self.picture = picture
         self.status = status
 
-    #def get_time(self):
-        #return time.localtime(self.timestamp)
 
     def get_dt(self):
         return datetime.fromtimestamp(self.timestamp)
-
-#    def get_time_as_time(self):
-#        return str(time.strftime("%H:%M %p", self.get_time()))
-
-#    def get_time_as_date(self):
-#        return str(time.strftime("%x", self.get_time()))
-
-#    def get_time_as_hrs_ago(self):
-#        hrs = int(time.strftime("%H", time.localtime())) - int(time.strftime("%H", self.get_time()))
-#        return str(hrs) + " hours ago"
-
-    #def get_formatted_time(self):
-        # calc difference in time in hours
-        #diff = (time.time() - self.timestamp) / (60 ** 2)
-
-    #    if (diff < 2):
-    #        return self.get_time_as_time()
-    #    if (diff < 24):
-    #        return self.get_time_as_hrs_ago()
-    #    else:
-    #        return self.get_time_as_date()
 
     def get_formatted_time(self):
         delta = datetime.now() - self.get_dt()
