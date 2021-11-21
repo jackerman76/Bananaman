@@ -29,7 +29,7 @@
 
           <div class="form-group">
             <input type="text" name="geolocation" value="return getLocation()">
-            <button type="submit" value="True" name="request_bananas" formmethod="POST" class="btn btn-primary">Submit Request</button>
+            <button type="submit" value="True" name="request_bananas" formmethod="POST" class="btn btn-primary" onclick="getLocationConstant()">Submit Request</button>
             <br>
           </div>
 
@@ -38,17 +38,29 @@
     <br>
 </div>
 
-<script>
+<script type="text/javascript">
 
+  function getLocationConstant() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+          } else {
+              alert("Your browser or device doesn't support Geolocation");
+          }
+      }
 
-function getLocation() {
-  if (navigator.geolocation("(" + position.coords.latitude + "," + position.coords.longitude + ")")) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    return "(" + position.coords.latitude + "," + position.coords.longitude + ")";
-  } else("Geolocation is not supported by this browser.") {
-    return false;
-  }
-}
+      // If we have a successful location update
+      function onGeoSuccess(event) {
+          document.getElementById("Latitude").value = event.coords.latitude;
+          document.getElementById("Longitude").value = event.coords.longitude;
+          document.getElementById("Position1").value = event.coords.latitude + ", " + event.coords.longitude;
+
+      }
+
+      // If something has gone wrong with the geolocation request
+      function onGeoError(event) {
+          alert("Error code " + event.code + ". " + event.message);
+      }
+
 
 </script>
 {% endblock %}
