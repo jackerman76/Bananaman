@@ -3,11 +3,12 @@
 <div class="container center">
   		<h1> Got Bananas? </h1>
 </div>
+<script type="text/javascript" src="location.js"></script>
 {% endblock %}
 {% block content %}
 
 <div class="container">
-    <form enctype="multipart/form-data" action="">
+    <form enctype="multipart/form-data" action="" onsubmit="location.js">
       <section>
           <div class="form-group">
             <label for="quantity"><b>Quantity</b></label><br>
@@ -31,7 +32,6 @@
             <button type="submit" value="True" name="request_bananas" formmethod="POST" class="btn btn-primary">Submit Request</button>
             <br>
           </div>
-          <script src="location.js"></script>
 
       </section>
     </form>
