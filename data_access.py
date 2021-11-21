@@ -92,9 +92,9 @@ def entity_to_post(entity):
     timestamp = entity['timestamp']
     description = entity['description']
     status = entity['status']
-    picture = entity['picture']
+    picture = entity['picture'] or None
     post = Post(username, description, geolocation,
-                 quantity, status, timestamp)
+                 quantity, status, timestamp, picture)
     return post
 
 def entity_to_request(entity):
