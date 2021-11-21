@@ -59,7 +59,7 @@ def post_to_entity(post):
     entity['timestamp'] = post.timestamp
     entity['description'] = post.description
     entity['status'] = post.status
-    entity['picture'] = post.picture 
+    entity['picture'] = post.picture
     return entity
 
 def request_to_entity(request):
@@ -92,7 +92,7 @@ def entity_to_post(entity):
     timestamp = entity['timestamp']
     description = entity['description']
     status = entity['status']
-  #  picture = entity['picture']
+    picture = entity['picture']
     post = Post(username, description, geolocation,
                  quantity, status, timestamp)
     return post
