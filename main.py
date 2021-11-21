@@ -13,7 +13,7 @@ from google.cloud import storage
 app = Flask(__name__, static_folder='static-files-folder')
 
 app.secret_key = 'SECRET_KEY'
-_BUCKET_NAME = "banana_post_pictures"
+_BUCKET_NAME = "banana-post-pictures"
 
 @app.route('/', methods=["GET", "POST"])
 @app.route('/home', methods=["GET", "POST"])
@@ -90,11 +90,12 @@ def got_bananas():
             description = request.values.get('description')
             username = session['username']
 
-            uploaded_file = request.files.get('file')
-            filename = request.form.get('filename')
+            uploaded_file = request.files['file']
+            #filename = request.form.get('filename')
+            file_name = uploaded_file.filename or session["username"] + "image_upload"
             gcs_client = storage.Client()
             storage_bucket = gcs_client.get_bucket(_BUCKET_NAME)
-            blob = storage_bucket.blob(uploaded_file.filename)
+            blob = storage_bucket.blob(file_name)
             c_type = uploaded_file.content_type
             blob.upload_from_string(uploaded_file.read(), content_type=c_type)
 

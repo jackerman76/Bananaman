@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="container">
-    <form>
+    <form enctype="multipart/form-data" action="">
       <section>
           <div class="form-group">
             <label for="quantity"><b>Quantity</b></label><br>
@@ -16,8 +16,8 @@
           </div>
 
           <div class="form-group">
-            <label for="radius"><b>Picture</b></label><br>
-            <input type="file" class="form-control" placeholder="Upload a picture of your bananas!" name="picture" >
+            <label for="file"><b>Picture</b></label><br>
+            <input type="file" class="form-control" placeholder="Upload a picture of your bananas!" name="file" >
             <br>
           </div>
 

@@ -1,5 +1,3 @@
-
-
 import filedatastorage
 import logging
 
