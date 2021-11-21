@@ -9,6 +9,7 @@ import urllib
 from uploadedFile import UploadedFile
 from displayInfo import DisplayInfo
 from google.cloud import storage
+import time
 
 app = Flask(__name__, static_folder='static-files-folder')
 
@@ -92,7 +93,8 @@ def got_bananas():
 
             uploaded_file = request.files['file']
             #filename = request.form.get('filename')
-            file_name = uploaded_file.filename or session["username"] + "image_upload"
+            file_name = uploaded_file.filename or "image_upload"
+            file_name += session["username"] + time.time()
             gcs_client = storage.Client()
             storage_bucket = gcs_client.get_bucket(_BUCKET_NAME)
             blob = storage_bucket.blob(file_name)
