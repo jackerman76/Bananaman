@@ -10,7 +10,7 @@
     <form enctype="multipart/form-data" action="" name="got_bananas" onsubmit="getLocationConstant()">
       <section>
 
-          <input type="hidden" id="geolocation" name="geolocation" value="return getLocationConstant()">
+          <input type="hidden" id="geolocation" name="geolocation" value="">
 
           <div class="form-group">
             <label for="quantity"><b>Quantity</b></label><br>
@@ -44,12 +44,14 @@
 
   function getLocationConstant() {
 
-    const onGeoSuccess = (position) => {
-      console.log(position);
-      const geolocation = {
-            position.coords.latitude,
-            position.coords.longitude
-          }
+    function onGeoSuccess(position) {
+        const {
+            latitude,
+            longitude
+        } = position.coords;
+
+        const geolocation = { latitude: latitude,longitude: longitude };
+      }
 
 
 
