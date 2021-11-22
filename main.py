@@ -94,11 +94,11 @@ def got_bananas():
             username = session['username']
 
             # geolocation handling
-            url = 'https://api.ipstack.com/{}'.format(request.remote_addr)
+            url = 'http://ip-api.com/json/{}'.format(request.remote_addr)
             r = requests.get(url)
             j = json.loads(r.text)
-            latitude = j["latitude"]
-            longitude = j["longitude"]
+            lat = j["latitude"]
+            lon = j["longitude"]
             geolocation = "("+str(latitude)+","+str(longitude)+")"
 
             # file handling
