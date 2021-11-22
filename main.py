@@ -92,7 +92,7 @@ def got_bananas():
             quantity = request.values.get('quantity')
             description = request.values.get('description')
             username = session['username']
-
+            geolocation = request.values.get("geolocation")
 
             # file handling
             uploaded_file = request.files['file']
@@ -110,7 +110,7 @@ def got_bananas():
 
 
 
-            post = Post(username, description, "temp", quantity, picture=url)
+            post = Post(username, description, "temp", quantity, picture=url, geolocation=geolocation)
             entity = post_to_entity(post)
             update_entity(entity)
             return (redirect("/"))

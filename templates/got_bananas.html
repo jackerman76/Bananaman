@@ -7,8 +7,11 @@
 {% block content %}
 
 <div class="container">
-    <form enctype="multipart/form-data" action="" onsubmit="return getLocationConstant()">
+    <form enctype="multipart/form-data" action="">
       <section>
+
+          <input type="hidden" id="geolocation" name="geolocation" value="return getLocationConstant()">
+
           <div class="form-group">
             <label for="quantity"><b>Quantity</b></label><br>
             <input type="number" class="form-control" placeholder="How many bananas do you have?" name="quantity" required>
