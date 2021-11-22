@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="container">
-    <form enctype="multipart/form-data" action="" name="got_bananas">
+    <form enctype="multipart/form-data" action="" name="got_bananas" onsubmit="getLocationConstant()">
       <section>
 
           <input type="hidden" id="geolocation" name="geolocation" value="return getLocationConstant()">
@@ -47,11 +47,11 @@
     const onGeoSuccess = (position) => {
       console.log(position);
       const geolocation = {
-            latitude,
-            longitude
-        } = position.coords;
-      return geolocation;
-    }
+            position.coords.latitude,
+            position.coords.longitude
+          }
+
+
 
     const onGeoError = (error) => {
       console.log(error);
@@ -59,8 +59,8 @@
     }
 
     navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
-    confirm("Position: " + geolocation);
-    document.forms['got_bananas']['geolocation'].value = geolocation;
+    confirm("Position: " + JSON.stringify(geolocation));
+    document.forms['got_bananas']['geolocation'].value = JSON.stringify(geolocation);
 
 }
 
