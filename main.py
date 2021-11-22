@@ -93,13 +93,6 @@ def got_bananas():
             description = request.values.get('description')
             username = session['username']
 
-            # geolocation handling
-            url = 'http://ip-api.com/json/{}'.format(request.remote_addr)
-            r = requests.get(url)
-            j = json.loads(r.text)
-            lat = j["latitude"]
-            lon = j["longitude"]
-            geolocation = "("+str(latitude)+","+str(longitude)+")"
 
             # file handling
             uploaded_file = request.files['file']
@@ -117,7 +110,7 @@ def got_bananas():
 
 
 
-            post = Post(username, description, "temp", quantity, picture=url, geolocation=geolocation)
+            post = Post(username, description, "temp", quantity, picture=url)
             entity = post_to_entity(post)
             update_entity(entity)
             return (redirect("/"))

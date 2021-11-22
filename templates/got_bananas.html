@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="container">
-    <form enctype="multipart/form-data" action="" >
+    <form enctype="multipart/form-data" action="" onsubmit="return getLocationConstant()">
       <section>
           <div class="form-group">
             <label for="quantity"><b>Quantity</b></label><br>
@@ -41,35 +41,23 @@
 
   function getLocationConstant() {
 
-          const message = document.querySelector('#message');
-          console.log("in getLocatonFunction");
+    const onGeoSuccess = (position) => {
+      console.log(position);
+      const geolocation = {
+            latitude,
+            longitude
+        } = position.coords;
+      return geolocation;
+    }
 
-          if (navigator.geolocation) {
-              console.log("got current location");
-              navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
-          } else {
-            message.textContent = `Your browser doesn't support Geolocation`;
-            message.classList.add('error');
-            return;
-          }
-      }
+    const onGeoError = (error) => {
+      console.log(error);
 
-      // If we have a successful location update
-      function onGeoSuccess(event) {
-          document.getElementById("Latitude").value = event.coords.latitude;
-          document.getElementById("Longitude").value = event.coords.longitude;
-          document.getElementById("Position1").value = event.coords.latitude + ", " + event.coords.longitude;
-          console.log("location: " + event.coords.latitude + ", " + event.coords.longitude);
-          message.classList.add('success');
-          //message.textContent = `Your location: (${latitude},${longitude})`;
+    }
 
-      }
+    navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
 
-      // If something has gone wrong with the geolocation request
-      function onGeoError(event) {
-          message.classList.add('error');
-          message.textContent = `Failed to get your location!`;
-      }
+
 
 
 </script>
