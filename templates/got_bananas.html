@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="container">
-    <form enctype="multipart/form-data" action="" onsubmit="getLocationConstant()">
+    <form enctype="multipart/form-data" action="" >
       <section>
           <div class="form-group">
             <label for="quantity"><b>Quantity</b></label><br>
@@ -42,8 +42,10 @@
   function getLocationConstant() {
 
           const message = document.querySelector('#message');
+          console.log("in getLocatonFunction");
 
           if (navigator.geolocation) {
+              console.log("got current location");
               navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
           } else {
             message.textContent = `Your browser doesn't support Geolocation`;
@@ -57,8 +59,9 @@
           document.getElementById("Latitude").value = event.coords.latitude;
           document.getElementById("Longitude").value = event.coords.longitude;
           document.getElementById("Position1").value = event.coords.latitude + ", " + event.coords.longitude;
+          console.log("location: " + event.coords.latitude + ", " + event.coords.longitude);
           message.classList.add('success');
-          message.textContent = `Your location: (${latitude},${longitude})`;
+          //message.textContent = `Your location: (${latitude},${longitude})`;
 
       }
 

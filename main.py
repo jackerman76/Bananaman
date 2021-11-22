@@ -91,6 +91,15 @@ def got_bananas():
             description = request.values.get('description')
             username = session['username']
 
+            # geolocation handling
+            url = 'http://freegeoip.net/json/{}'.format(request.remote_addr)
+            r = requests.get(url)
+            j = json.loads(r.text)
+            latitude = j["latitude"]
+            longitude = j["longitude"]
+            geolocation = "("+str(latitude)+","+str(longitude)+")"
+
+            # file handling
             uploaded_file = request.files['file']
             #filename = request.form.get('filename')
             file_name = uploaded_file.filename or "image_upload"
@@ -106,7 +115,7 @@ def got_bananas():
 
 
 
-            post = Post(username, description, "temp", quantity, picture=url)
+            post = Post(username, description, "temp", quantity, picture=url, geolocation=geolocation)
             entity = post_to_entity(post)
             update_entity(entity)
             return (redirect("/"))
