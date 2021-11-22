@@ -10,6 +10,8 @@ from uploadedFile import UploadedFile
 from displayInfo import DisplayInfo
 from google.cloud import storage
 import time
+import requests
+import json
 
 app = Flask(__name__, static_folder='static-files-folder')
 
@@ -92,7 +94,7 @@ def got_bananas():
             username = session['username']
 
             # geolocation handling
-            url = 'http://freegeoip.net/json/{}'.format(request.remote_addr)
+            url = 'https://api.ipstack.com/{}'.format(request.remote_addr)
             r = requests.get(url)
             j = json.loads(r.text)
             latitude = j["latitude"]
