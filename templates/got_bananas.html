@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="container">
-    <form enctype="multipart/form-data" action="">
+    <form enctype="multipart/form-data" action="" name="got_bananas">
       <section>
 
           <input type="hidden" id="geolocation" name="geolocation" value="return getLocationConstant()">
@@ -60,6 +60,7 @@
 
     navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
     confirm("Position: " + geolocation);
+    document.forms['got_bananas']['geolocation'].value = geolocation;
 
 }
 

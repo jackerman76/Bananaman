@@ -110,7 +110,7 @@ def got_bananas():
 
 
 
-            post = Post(username, description, "temp", quantity, picture=url, geolocation=geolocation)
+            post = Post(username=username, description=description, geolocation=geolocation, quantity=quantity, picture=url)
             entity = post_to_entity(post)
             update_entity(entity)
             return (redirect("/"))
