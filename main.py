@@ -92,7 +92,12 @@ def got_bananas():
             quantity = request.values.get('quantity')
             description = request.values.get('description')
             username = session['username']
-            geolocation = request.values.get("geolocation")
+            # geolocation = request.values.get("geolocation")
+
+            # location input using google maps api
+            latitude = request.values.get("loc_lat")
+            longitude = request.values.get("loc_lon")
+            geolocation = str([latitude, longitude])
 
             # file handling
             uploaded_file = request.files['file']

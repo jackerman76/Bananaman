@@ -3,6 +3,33 @@
 <div class="container center">
   		<h1> Got Bananas? </h1>
 </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=API_KEY"></script>
+
+  <script>
+    var searchInput = 'search_input';
+
+    $(document).ready(function () {
+        var autocomplete;
+        autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+            types: ['geocode'],
+        });
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var near_place = autocomplete.getPlace();
+            document.getElementById('loc_lat').value = near_place.geometry.location.lat();
+            document.getElementById('loc_long').value = near_place.geometry.location.lng();
+
+        });
+    });
+
+    $(document).on('change', '#'+searchInput, function () {
+      document.getElementById('latitude_input').value = '';
+      document.getElementById('longitude_input').value = '';
+
+    });
+  </script>
+
 {% endblock %}
 {% block content %}
 
@@ -11,10 +38,18 @@
       <section>
 
           <input type="hidden" id="geolocation" name="geolocation" value="">
+          <input type="hidden" id="loc_lat" />
+          <input type="hidden" id="loc_long" />
 
           <div class="form-group">
             <label for="quantity"><b>Quantity</b></label><br>
             <input type="number" class="form-control" placeholder="How many bananas do you have?" name="quantity" required>
+            <br>
+          </div>
+
+          <div class="form-group">
+            <label for="location"><b>Pickup Location</b></label><br>
+            <input type="text" class="form-control" id="search_input" placeholder="Type address..." name="location" required>
             <br>
           </div>
 
