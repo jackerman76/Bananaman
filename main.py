@@ -96,7 +96,7 @@ def got_bananas():
 
             # location input using google maps api
             latitude = request.values.get("loc_lat")
-            longitude = request.values.get("loc_lon")
+            longitude = request.values.get("loc_long")
             geolocation = str([latitude, longitude])
 
             # file handling

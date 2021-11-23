@@ -34,12 +34,12 @@
 {% block content %}
 
 <div class="container">
-    <form enctype="multipart/form-data" action="" name="got_bananas" onsubmit="getLocationConstant()">
+    <form enctype="multipart/form-data" action="" name="got_bananas">
       <section>
 
           <input type="hidden" id="geolocation" name="geolocation" value="">
-          <input type="hidden" id="loc_lat" />
-          <input type="hidden" id="loc_long" />
+          <input type="hidden" id="loc_lat" name="loc_lat">
+          <input type="hidden" id="loc_long" name="loc_long">
 
           <div class="form-group">
             <label for="quantity"><b>Quantity</b></label><br>
