@@ -95,9 +95,9 @@ def got_bananas():
             # geolocation = request.values.get("geolocation")
 
             # location input using google maps api
-            latitude = request.values.get("loc_lat")
-            longitude = request.values.get("loc_long")
-            geolocation = str([latitude, longitude])
+            latitude = float(request.values.get("loc_lat"))
+            longitude = float(request.values.get("loc_long"))
+            geolocation = str({ lat: latitude, lng: longitude })
 
             # file handling
             uploaded_file = request.files['file']
@@ -127,6 +127,10 @@ def need_bananas():
     list = query_posts()
 
     return (render_template("need_bananas.html", list=list))
+
+@app.route('/view_map', methods=["GET", "POST"])
+def view_map():
+    return (render_template("view_map.html"))
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
