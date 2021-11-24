@@ -1,6 +1,7 @@
 import time
 from time import gmtime, strftime
 from datetime import datetime
+import json
 
 class Post():
     def __init__(self, username, description, geolocation,
@@ -10,7 +11,7 @@ class Post():
         # Implement pictures and geolocation later
         self.username = username
         self.description = description
-        self.geolocation = geolocation
+        self.geolocation = geolocation # "[latitude,longitude]"
         self.quantity = quantity
         if timestamp:
             self.timestamp = timestamp
@@ -19,6 +20,14 @@ class Post():
         self.picture = picture
         self.status = status
 
+    def has_geolocation(self):
+        return self.geolocation != None
+
+    def get_latitude(self):
+        return float(json.loads(self.geolocation)[0]) or None
+
+    def get_longitude(self):
+        return float(json.loads(self.geolocation)[1]) or None
 
     def get_dt(self):
         return datetime.fromtimestamp(self.timestamp)

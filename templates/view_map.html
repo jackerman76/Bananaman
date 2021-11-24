@@ -16,24 +16,38 @@
     // Initialize and add the map
     function initMap() {
       // The location of Uluru
-      const uluru = { lat: -25.344, lng: 131.036 };
+      const pittsburgh = { lat: 40.4406, lng: 79.9959 };
       // The map, centered at Uluru
       const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: uluru,
+        zoom: 10,
+        center: pittsburgh,
       });
+    var markers = [];
+  {% for i in list %}
+  {% if i.has_geolocation() %}
       // The marker, positioned at Uluru
       const marker = new google.maps.Marker({
-        position: uluru,
+        position: {lat: i.get_latitude(), lng: i.get_longitude()}, //{ lat: -25.344, lng: 131.036 }
         map: map,
       });
+      markers.push(marker);
+  {% endif %}
+  {% endfor %}
     }
   </script>
 </div>
 {% endblock %}
 {% block content %}
-    <div id="map"></div>
-
+<div class="container">
+  <div class="card-deck">
+      <div class="card" style="max-width: 100%; min-width: 100%;">
+        <div id="map"></div>
+      </div>
+      <div class="card" style="max-width: 100%; min-width: 100%;">
+        <p>This is where information about the post will go </p>
+      </div>
+  </div>
+</div>
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap&libraries=&v=weekly"
