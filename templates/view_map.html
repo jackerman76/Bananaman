@@ -23,12 +23,14 @@
         center: pittsburgh,
       });
     var markers = [];
+
+/*
     const description = [];
     const quantity = [];
     const username = [];
     const time = [];
     const picture = [];
-
+*/
     var x = 0;
 
   {% for i in list %}
@@ -36,24 +38,26 @@
       var marker = new google.maps.Marker({
         position: { lat: {{ i.get_latitude() }}, lng: {{ i.get_longitude() }} }, //{ lat: -25.344, lng: 131.036 }
         map: map,
+        data: {{ i.as_json() }}
       });
-
+/*
       description.push('{{ i.description.strip() }}');
       quantity.push('{{ i.quantity + " Bananas"}}');
       username.push('{{ i.username }}');
       time.push('{{ i.get_formatted_time() }}');
       picture.push('{{ i.picture }}');
-      google.maps.event.addListener(marker, "click", display_info(x));
+*/
+      google.maps.event.addListener(marker, "click", display_info(marker));
       x += 1;
       markers.push(marker);
   {% endfor %}
 
-   function display_info(x) {
-            document.getElementById("description").innerText = description[x];
-            document.getElementById("quantity").innerText = quantity[x];
-            document.getElementById("username").innerText = username[x];
-            document.getElementById("time").innerText = time[x];
-            document.getElementById("picture").src = picture[x];
+   function display_info(marker) {
+            document.getElementById("description").innerText = marker["data"]["description"];
+            document.getElementById("quantity").innerText = marker["data"]["quantity"];
+            document.getElementById("username").innerText = marker["data"]["username"];
+            document.getElementById("time").innerText = marker["data"]["formatted_time"];
+            document.getElementById("picture").src = marker["data"]["picture"];
         }
 
 }
