@@ -42,3 +42,5 @@ class Post():
 
         else:
             return str(int(delta.seconds/60)) + " minutes ago"
+    def as_json(self):
+        return json.dumps(self.__dict__)

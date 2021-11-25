@@ -1,8 +1,6 @@
 {% extends '_base.html' %}
 {% block header %}
 <div class="container center">
-  <link rel="stylesheet" type="text/css" href="./style.css" />
-  <script src="./index.js"></script>
   <style>
     /* Set the size of the div element that contains the map */
     #map {
@@ -12,15 +10,9 @@
       /* The width is the width of the web page */
     }
   </style>
+
   <script>
 
-    function display_info(description, quantity, username, time, picture) {
-      document.getElementById("description").innerText = description;
-      document.getElementById("quantity").innerText = quantity;
-      document.getElementById("username").innerText = username;
-      document.getElementById("time").innerText = time;
-      document.getElementById("picture").src = picture;
-    }
     // Initialize and add the map
     function initMap() {
       // The location of Uluru
@@ -31,24 +23,40 @@
         center: pittsburgh,
       });
     var markers = [];
+    const description = [];
+    const quantity = [];
+    const username = [];
+    const time = [];
+    const picture = [];
+
+    var x = 0;
+
   {% for i in list %}
-  {% if i.has_geolocation() %}
       // The marker, positioned at Uluru
       var marker = new google.maps.Marker({
-        position: { {{ lat: i.get_latitude() }}, lng: {{ i.get_longitude() }}}, //{ lat: -25.344, lng: 131.036 }
+        position: { lat: {{ i.get_latitude() }}, lng: {{ i.get_longitude() }} }, //{ lat: -25.344, lng: 131.036 }
         map: map,
       });
 
-      marker.addListener("click", display_info({{ i.description }},
-                                               {{ i.quantity + " Bananas" }},
-                                               {{ i.username }},
-                                               {{ i.get_formatted_time() }},
-                                               {{ i.picture }}));
-
+      description.push('{{ i.description.strip() }}');
+      quantity.push('{{ i.quantity + " Bananas"}}');
+      username.push('{{ i.username }}');
+      time.push('{{ i.get_formatted_time() }}');
+      picture.push('{{ i.picture }}');
+      google.maps.event.addListener(marker, "click", display_info(x));
+      x += 1;
       markers.push(marker);
-  {% endif %}
   {% endfor %}
-    }
+
+   function display_info(x) {
+            document.getElementById("description").innerText = description[x];
+            document.getElementById("quantity").innerText = quantity[x];
+            document.getElementById("username").innerText = username[x];
+            document.getElementById("time").innerText = time[x];
+            document.getElementById("picture").src = picture[x];
+        }
+
+}
   </script>
 </div>
 {% endblock %}
@@ -75,7 +83,7 @@
 </div>
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap&libraries=&v=weekly=geometry"
       async
     ></script>
 
