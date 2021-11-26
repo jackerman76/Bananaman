@@ -5,11 +5,38 @@
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=API_KEY"></script>
+
+  <script>
+    var searchInput = 'search_input';
+
+    $(document).ready(function () {
+        var autocomplete;
+        autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+            types: ['geocode'],
+        });
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var near_place = autocomplete.getPlace();
+            document.getElementById('loc_lat').value = near_place.geometry.location.lat();
+            document.getElementById('loc_long').value = near_place.geometry.location.lng();
+
+        });
+    });
+
+    $(document).on('change', '#'+searchInput, function () {
+      document.getElementById('latitude_input').value = '';
+      document.getElementById('longitude_input').value = '';
+
+    });
+  </script>
 {% endblock %}
 {% block content %}
 <div class="container">
     <form enctype="multipart/form-data" action="" name="need_bananas">
       <section>
+
+          <input type="hidden" id="loc_lat" name="loc_lat">
+          <input type="hidden" id="loc_long" name="loc_long">
 
           <div class="form-group">
             <button type="submit" value="True" name="add_filter" data-toggle="collapse" data-target="#collapse_form" class="btn btn-primary">Add Filter</button>
@@ -17,12 +44,26 @@
           </div>
 
           <div id="collapse_form" class="collapse">
+
             <div class="form-group">
               <label for="user_location"><b>Location</b></label><br>
               <input type="text" class="form-control" id="search_input" placeholder="Let us know where you are so we can find bananas near you!" name="user_location" required>
               <br>
             </div>
+
+            <div class="form-group">
+              <label for="radius"><b>Radius (mi)</b></label><br>
+              <input type="number" class="form-control" id="radius_input" placeholder="How far are you willing to travel? (Enter number in miles)" name="user_location" required>
+              <br>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" value="True" name="submit_form" formmethod="POST" class="btn btn-primary">Apply Filters</button>
+              <br>
+            </div>
           </div>
+
+
 
       </section>
     </form>

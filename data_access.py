@@ -125,6 +125,21 @@ def query_posts():
         list.append(entity_to_post(i))
     return list
 
+def query_posts_by_location(latitude, longitude, radius=1000000):
+    """Returns list of posts sorted by location"""
+    posts = query_posts()
+    list = []
+    for post in posts:
+        sublist = [post.calc_distance(latitude, longitude), post]
+        list.append(sublist)
+
+    list.sort() # sorts based on first element of sublist, which is location
+    sorted = []
+    for sublist in list:
+        if sublist[0] <= radius: sorted.append(sublist[1])
+    return sorted
+
+
 def query_user_requests(user):
     client = get_client()
     query = client.query(kind="request")

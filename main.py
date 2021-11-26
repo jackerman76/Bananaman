@@ -124,7 +124,20 @@ def got_bananas():
 
 @app.route('/need_bananas', methods=["GET", "POST"])
 def need_bananas():
-    list = query_posts()
+    if request.method == 'POST':
+        if request.form.get("submit_form") == "True":
+            latitude = float(request.values.get("loc_lat"))
+            longitude = float(request.values.get("loc_long"))
+            session["latitude"] = latitude
+            session["longitude"] = longitude
+            radius = request.values.get("radius_input")
+
+            list = query_posts_by_location(latitude, longitude, radius)
+
+    else if session.get("latitude") and session.get("longitude"):
+        list = query_posts_by_location(session["latitude"], session["longitude"])
+
+    else: list = query_posts()
 
     return (render_template("need_bananas.html", list=list))
 
