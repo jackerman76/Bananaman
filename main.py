@@ -134,7 +134,7 @@ def need_bananas():
 
             list = query_posts_by_location(latitude, longitude, radius)
 
-    else if session.get("latitude") and session.get("longitude"):
+    elif session.get("latitude") and session.get("longitude"):
         list = query_posts_by_location(session["latitude"], session["longitude"])
 
     else: list = query_posts()
