@@ -132,7 +132,12 @@ def need_bananas():
             session["longitude"] = longitude
             radius = request.values.get("radius_input")
 
-            list = query_posts_by_location(latitude, longitude, radius)
+            if not radius:
+                list = query_posts_by_location(latitude, longitude)
+
+            else:
+                radius = float(radius)
+                list = query_posts_by_location(latitude, longitude, radius)
 
     elif session.get("latitude") and session.get("longitude"):
         list = query_posts_by_location(session["latitude"], session["longitude"])

@@ -40,7 +40,7 @@ class Post():
     def calc_distance(self, latitude, longitude):
         u = (latitude, longitude)
         p = (self.get_latitude(), self.get_longitude())
-        self.distance = distance.distance(u, p).miles
+        self.distance = format(distance.distance(u, p).miles, '.2f')
         return self.distance
 
     def get_availability_start_dt(self):
@@ -53,7 +53,7 @@ class Post():
         start = self.get_availability_start_dt()
         end = self.get_availability_end_dt()
         now = datetime.now()
-        return now >= start and now <= end 
+        return now >= start and now <= end
 
     def get_dt(self):
         return datetime.fromtimestamp(self.timestamp)

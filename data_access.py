@@ -127,14 +127,14 @@ def query_posts():
 
 def query_posts_by_location(latitude, longitude, radius=1000000, posts=None):
     """Returns list of posts sorted by location"""
-    if not posts: posts = query_posts()
+    posts = query_posts()
     list = []
     for post in posts:
         # calc distance also sets the distance attribute in posts
         sublist = [post.calc_distance(latitude, longitude), post]
         list.append(sublist)
 
-    list = list.sort() # sorts based on first element of sublist, which is location
+    list.sort(key = lambda x: x[0]) # sorts based on first element of sublist, which is location
     sorted = []
     for sublist in list:
         print(sublist[0])
