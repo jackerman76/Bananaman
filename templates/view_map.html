@@ -35,10 +35,12 @@
 
   {% for i in list %}
       // The marker, positioned at Uluru
+      var d = {{ i.as_json() | safe }};
+      //d.replace(/(\r\n|\n|\r)/gm,"").replace(/&#34;/g, '"');
       var marker = new google.maps.Marker({
         position: { lat: {{ i.get_latitude() }}, lng: {{ i.get_longitude() }} }, //{ lat: -25.344, lng: 131.036 }
         map: map,
-        data: {{ i.as_json() }}
+        data: d
       });
 /*
       description.push('{{ i.description.strip() }}');

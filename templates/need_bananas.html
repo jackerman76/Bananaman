@@ -3,9 +3,32 @@
   <div class="container center">
     <h1> Need Bananas? </h1>
   </div>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=API_KEY"></script>
 {% endblock %}
 {% block content %}
+<div class="container">
+    <form enctype="multipart/form-data" action="" name="need_bananas">
+      <section>
+
+          <div class="form-group">
+            <button type="submit" value="True" name="add_filter" data-toggle="collapse" data-target="#collapse_form" class="btn btn-primary">Add Filter</button>
+            <br>
+          </div>
+
+          <div id="collapse_form" class="collapse">
+            <div class="form-group">
+              <label for="user_location"><b>Location</b></label><br>
+              <input type="text" class="form-control" id="search_input" placeholder="Let us know where you are so we can find bananas near you!" name="user_location" required>
+              <br>
+            </div>
+          </div>
+
+      </section>
+    </form>
+    <br>
+</div>
+
 
 
   <div class="album py-5 bg-light">
