@@ -76,14 +76,14 @@ class Post():
 
 
     def get_formatted_availability(self):
-        if availability_start and availability_end:
+        if self.availability_start and self.availability_end:
             s = self.format_dt(self.get_availability_start_dt())
             e = self.format_dt(self.get_availability_end_dt())
             self.formatted_availability = "Available from " + s + " until " + e
-        elif availability_start and !availability_end:
+        elif self.availability_start and not self.availability_end:
             s = self.format_dt(self.get_availability_start_dt())
             self.formatted_availability = "Available from " + s
-        elif !availability_start and availability_end:
+        elif not self.availability_start and self.availability_end:
             e = self.format_dt(self.get_availability_end_dt())
             self.formatted_availability = "Available until " + e
         else:
