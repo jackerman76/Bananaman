@@ -51,6 +51,9 @@ class Post():
     def get_availability_end_dt(self):
         return datetime.strptime(self.availability_end, '%Y-%m-%dT%H:%M')
 
+    def format_dt(self, dt):
+        return datetime.strftime(dt, '%Y-%m-%d %H:%M')
+
     def available_now(self):
         start = self.get_availability_start_dt()
         end = self.get_availability_end_dt()
@@ -74,11 +77,15 @@ class Post():
 
     def get_formatted_availability(self):
         if availability_start and availability_end:
-            self.formatted_availability = "Available from " + self.availability_start + " until " + self.availability_end
+            s = self.format_dt(self.get_availability_start_dt())
+            e = self.format_dt(self.get_availability_end_dt())
+            self.formatted_availability = "Available from " + s + " until " + e
         elif availability_start and !availability_end:
-            self.formatted_availability = "Available from " + self.availability_start
+            s = self.format_dt(self.get_availability_start_dt())
+            self.formatted_availability = "Available from " + s
         elif !availability_start and availability_end:
-            self.formatted_availability = "Available until " + self.availability_end
+            e = self.format_dt(self.get_availability_end_dt())
+            self.formatted_availability = "Available until " + e
         else:
             self.formatted_availability = "No availability provided"
         return self.formatted_availability
