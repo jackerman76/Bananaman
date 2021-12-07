@@ -103,12 +103,12 @@ def got_bananas():
             # availability funcitonality
             availability_start = request.values.get("availability_start")
             availability_end = request.values.get("availability_end")
-            start_timestamp = None
-            end_timestamp = None
+            #start_timestamp = None
+            #end_timestamp = None
             # chek if user provided these values
-            if availability_start and availability_end:
-                start_timestamp = datetime_input_to_timestamp(availability_start)
-                end_timestamp = datetime_input_to_timestamp(availability_end)
+            #if availability_start and availability_end:
+                #start_timestamp = datetime_input_to_timestamp(availability_start)
+                #end_timestamp = datetime_input_to_timestamp(availability_end)
 
 
             # file handling
@@ -132,8 +132,8 @@ def got_bananas():
                         geolocation=geolocation,
                         quantity=quantity,
                         picture=url,
-                        availability_start=start_timestamp,
-                        availability_end=end_timestamp,
+                        availability_start=availability_start,
+                        availability_end=availability_end,
                         status="available")
             entity = post_to_entity(post)
             update_entity(entity)
