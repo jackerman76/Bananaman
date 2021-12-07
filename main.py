@@ -12,7 +12,7 @@ from google.cloud import storage
 import time
 import requests
 import json
-import utils
+from utils import *
 
 app = Flask(__name__, static_folder='static-files-folder')
 

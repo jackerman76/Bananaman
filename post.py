@@ -3,6 +3,7 @@ from time import gmtime, strftime
 from datetime import datetime
 from geopy import distance
 import json
+from utils import *
 
 class Post():
     def __init__(self, username, description, geolocation,
@@ -23,6 +24,7 @@ class Post():
         self.status = status
         self.availability_start = availability_start
         self.availability_end = availability_end
+        self.formatted_availability = None
         self.formatted_time = None
         self.distance = None
 
@@ -68,6 +70,20 @@ class Post():
 
         else:
             return str(int(delta.seconds/60)) + " minutes ago"
+
+
+    def get_formatted_availability(self):
+        if availability_start and availability_end:
+            self.formatted_availability = "Available from " + self.availability_start + " until " + self.availability_end
+        elif availability_start and !availability_end:
+            self.formatted_availability = "Available from " + self.availability_start
+        elif !availability_start and availability_end:
+            self.formatted_availability = "Available until " + self.availability_end
+        else:
+            self.formatted_availability = "No availability provided"
+        return self.formatted_availability
+
+
     def as_json(self):
         self.formatted_time = self.get_formatted_time()
         return json.dumps(self.__dict__)
