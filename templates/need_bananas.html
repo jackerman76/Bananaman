@@ -86,7 +86,7 @@
             <div class="card-body">
               <p class="card-text cardtext">{{ i.description }}</p>
               <hr/>
-              <p class="card-text cardtext">{{ "Quantity: " + i.quantity + " Bananas" }}</p>
+              <p class="card-text cardtext">{{ "Quantity: " + i.quantity + " Bananas" }} {{ i.get_formatted_availability() }}</p>
               <hr/>
               <p class="card-text cardtext">{{ "User: " + i.username }}</p>
               {% if i.distance != None %}

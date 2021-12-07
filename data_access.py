@@ -95,10 +95,10 @@ def entity_to_post(entity):
     description = entity['description']
     status = entity['status']
     picture = entity['picture'] or None
-    availability_start = entity['availability_start']
-    availability_end = entity['availability_end']
+    availability_start = entity['availability_start'] or None
+    availability_end = entity['availability_end']or None
     post = Post(username, description, geolocation,
-                 quantity, status, timestamp, picture)
+                 quantity, status, timestamp, picture, availability_start=availability_start, availability_end=availability_end)
     return post
 
 def entity_to_request(entity):
