@@ -15,67 +15,53 @@
 
     // Initialize and add the map
     function initMap() {
-      // The location of Uluru
+      // The location of Pittsburgh
       const pittsburgh = { lat: 40.4406, lng: -79.9959 };
-      // The map, centered at Uluru
+      // The map, centered at Pittsburgh
       const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
         center: pittsburgh,
       });
-    var markers = [];
 
-/*
-    const description = [];
-    const quantity = [];
-    const username = [];
-    const time = [];
-    const picture = [];
-*/
-    var x = 0;
 
   {% for i in list %}
-      // The marker, positioned at Uluru
-      var d = {{ i.as_json() | safe }};
-      //d.replace(/(\r\n|\n|\r)/gm,"").replace(/&#34;/g, '"');
+
+
+      // add marker - this part works
       var marker = new google.maps.Marker({
         position: { lat: {{ i.get_latitude() }}, lng: {{ i.get_longitude() }} }, //{ lat: -25.344, lng: 131.036 }
         map: map,
-        data: d
+        data: {{ i.as_json() | safe }}
       });
-/*
-      description.push('{{ i.description.strip() }}');
-      quantity.push('{{ i.quantity + " Bananas"}}');
-      username.push('{{ i.username }}');
-      time.push('{{ i.get_formatted_time() }}');
-      picture.push('{{ i.picture }}');
-*/
-      google.maps.event.addListener(marker, "click", display_info(marker));
-      x += 1;
-      markers.push(marker);
+
+      marker.addListener("click", () => {
+        document.getElementById("description").innerText = {{ "`"  + i.description + "`" }};
+        document.getElementById("quantity").innerText = {{ "`" + i.quantity + "`" }};
+        document.getElementById("username").innerText = {{ "`" + i.username + "`" }};
+        document.getElementById("time").innerText = {{ "`" + i.get_formatted_time() + "`" }};
+        document.getElementById("picture").src = {{ "`" + i.picture + "`" }};
+
+      });
+
+
   {% endfor %}
 
-   function display_info(marker) {
-            document.getElementById("description").innerText = marker["data"]["description"];
-            document.getElementById("quantity").innerText = marker["data"]["quantity"];
-            document.getElementById("username").innerText = marker["data"]["username"];
-            document.getElementById("time").innerText = marker["data"]["formatted_time"];
-            document.getElementById("picture").src = marker["data"]["picture"];
-        }
+    }
 
-}
+
   </script>
 </div>
 {% endblock %}
 {% block content %}
 <div class="container">
   <div class="card-deck">
-      <div class="card" style="max-width: 100%; min-width: 100%;">
+      <div class="card" style="max-width: 45rem; min-width: 21rem;">
         <div id="map"></div>
       </div>
-      <div class="card shadow-sm" style="max-width: 100%; min-width: 100%;">
+      <div class="card shadow-sm" style="max-width: 45rem; min-width: 21rem;">
         <!--  <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Bananas" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Bananas</text></svg>
         -->
-        <img class="card-img-top cover" id="picture" src="">
+        <img class="card-img-top cover" style="object-fit: scale-down;" width="100%" height="225" id="picture" src="">
         <div class="card-body">
           <p class="card-text cardtext" id="description">Description</p>
           <p class="card-text cardtext" id="quantity">Quantity</p>

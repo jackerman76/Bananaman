@@ -40,7 +40,7 @@ class Post():
     def calc_distance(self, latitude, longitude):
         u = (latitude, longitude)
         p = (self.get_latitude(), self.get_longitude())
-        self.distance = format(distance.distance(u, p).miles, '.2f')
+        self.distance = float(format(distance.distance(u, p).miles, '.2f'))
         return self.distance
 
     def get_availability_start_dt(self):
