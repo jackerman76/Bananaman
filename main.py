@@ -12,6 +12,7 @@ from google.cloud import storage
 import time
 import requests
 import json
+import bcrypt
 from utils import *
 
 app = Flask(__name__, static_folder='static-files-folder')
@@ -34,14 +35,18 @@ def login():
     if request.form.get("login") == "True":
         username = request.values.get('username')
         password = request.values.get('password')
+        
+        hashedPassword = createHashedPassword(password)
+
         # create user object
-        user = User(username, password)
+        user = User(username, hashedPassword)
+        
         # check if user exists
         entity = get_user_entity(user)
         if entity:
             #User exists
             user2 = entity_to_user(entity)
-            if user2.password == password:
+            if checkPassword(password, user2.password):
                 session['username'] = username
                 return (redirect(url_for('home')))
             else:
@@ -65,7 +70,8 @@ def create_account():
             if password1 == password2:
                 # account can be successfully created
                 # create user object
-                user = User(username, password1, email)
+                hashedPassword = createHashedPassword(password1)
+                user = User(username, hashedPassword, email)
 
                 temp = get_user_entity(user)
                 if temp:
@@ -178,3 +184,10 @@ def logout():
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
+
+
+def createHashedPassword(password):
+    return bcrypt.hashpw(password, bcrypt.gensalt())
+
+def checkPassword(password, hashedPassword):
+    return bcrypt.checkpw(password, hashedPassword)

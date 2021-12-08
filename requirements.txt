@@ -4,3 +4,4 @@ phonenumbers
 datetime
 google-cloud-storage
 geopy
+py-bcrypt
