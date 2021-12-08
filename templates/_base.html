@@ -6,8 +6,6 @@
       <link rel="icon" type="image/x-icon" href="../static-files-folder/Iconicon-Veggies-Bananas.ico" />
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="/static-files-folder/style.css">
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
-      <meta name="google-signin-client_id" content="">
       <title>{% block title %}{% endblock %}</title>
 
     </head>
@@ -28,8 +26,7 @@
             <ul class="navbar-nav mr-auto">
 
               <li class="nav-item active">
-                <a class="nav-link" style="color: #ffffff;" href="{{ url_for('login') }}">Login<span class="sr-only">(current)</span></a>
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+              <a class="nav-link" style="color: #ffffff;" href="{{ url_for('login') }}">Login<span class="sr-only">(current)</span></a>
               </li>
 
               <li class="nav-item active">
@@ -49,7 +46,6 @@
               </li>
 
               <li class="nav-item active">
-                <a href="#" onclick="signOut();">Sign out</a>
                 <a class="nav-link" style="color: #ffffff;" onclick="return confirmLogout()" href="{{ url_for('logout') }}">Logout<span class="sr-only">(current)</span></a>
               </li>
            </ul>
@@ -87,20 +83,6 @@
             return false;
           };
       }
-
-      function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-      }
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
-    }
     </script>
 
 
