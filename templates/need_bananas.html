@@ -86,19 +86,21 @@
             <div class="card-body">
               <p class="card-text cardtext">{{ i.description }}</p>
               <hr/>
-              <p class="card-text cardtext">{{ "Quantity: " + i.quantity + " Bananas" }} {{ i.get_formatted_availability() }}</p>
+              <p class="card-text cardtext">{{ i.quantity + " Bananas" }} {{ i.get_formatted_availability() }}</p>
               <hr/>
               <p class="card-text cardtext">{{ "User: " + i.username }}</p>
               {% if i.distance != None %}
                 <hr/>
                 <p class="card-text cardtext">{{ i.distance}} miles away</p>
               {% endif %}
+              <!--
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary">Save</button>
                 </div>
               </div>
+              -->
             </div>
             <div class="card-footer">
               <small class="text-muted">{{ i.get_formatted_time() }}</small>
